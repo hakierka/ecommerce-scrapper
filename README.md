@@ -33,6 +33,11 @@ While this script was designed for an imaginary API, it can be easily adapted to
 ## Usage
 
 Run the script with the command: `node src/index.js`
+The command node src/index.js is used to run your JavaScript file index.js with Node.js. In this case, index.js is the entry point of your application, which imports and calls the scrapeProducts function from api.js.
+
+This command will result in ERROR because the script is trying to make a request to an imaginary API at https://api.ecommerce.com/products, which doesn’t exist. The ETIMEDOUT error means that the request to the server timed out without a response.
+
+Check [Adapting the Solution to a Real API](##adapting-the-solution-to-a-Real-API) 
 
 ## Testing
 
