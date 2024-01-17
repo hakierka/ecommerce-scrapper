@@ -1,28 +1,28 @@
 # E-Commerce Product Scraper
 
+
 ## Introduction
 
-This project is a script to scrape all products from an imaginary e-commerce API. The API has a limitation where it only returns a maximum of 1000 products per request. This script overcomes this limitation by creating requests for specific price ranges of products, ensuring all products are scraped and accumulated into a single array.
+This script addresses the challenge of extracting products from an imaginary e-commerce API that imposes a limitation of 1000 products per request. The API, although fictional, mimics real-world scenarios where large datasets need to be fetched in chunks. The script overcomes this limitation by intelligently creating requests for specific price ranges, ensuring that all products are scraped and consolidated into a single array.
 
 ## Problem Statement
 
-The challenge posed by the assignment was to extract all products from an imaginary e-commerce JSON API with limited results per search. The API only returns a maximum of 1000 products per request, and each product on the API costs somewhere between $0 and $100,000. The API accepts `minPrice` and `maxPrice` query parameters to filter the products by price.
+The challenge is to extract all products from an imaginary e-commerce JSON API with a limitation of 1000 products per request. Each product costs between $0 and $100,000, and the API accepts `minPrice` and `maxPrice` parameters for filtering.
 
 ## Solution
 
-The solution to this problem was to create an algorithm that overcomes the limitation of the API by creating requests for specific price ranges of products. This ensures that all products are scraped and accumulated into a single array called `products`.
+###Initial Request
+The script initiates the process by making an initial request to the API without any query parameters. This fetches the first 1000 products and provides the total number of available products.
 
-The script uses the `axios` library to make HTTP requests to the API. The `axios` library was chosen for its simplicity and ease of use. It supports promises by default, which makes it easy to handle asynchronous HTTP requests.
+###Subsequent Requests
+To overcome the API limitation, the script calculates price ranges based on the total number of products and a maximum price of $100,000. It then makes subsequent requests to the API with calculated `minPrice` and `maxPrice` parameters, ensuring all products are fetched.
 
-The script first makes an initial request to the API without any query parameters. This returns the first 1000 products and the total number of products available. The script then calculates the price range for subsequent requests based on the total number of products and the maximum price of $100,000. It then makes subsequent requests to the API with the `minPrice` and `maxPrice` query parameters set to these calculated price ranges.
-
-## Testing
-
-The script is tested using the `jest` testing framework. The tests mock the API response and check if the `scrapeProducts` function correctly scrapes all products from the API and returns them in an array.
+###Testing
+The script's functionality is tested using the Jest framework. The tests mock the API response and verify if the `scrapeProducts` function correctly retrieves all products and returns them in an array.
 
 ## Adapting the Solution to a Real API
 
-While this script was designed for an imaginary API, it can be easily adapted to a real API with a similar structure. The main change would be to replace the URL of the imaginary API with the URL of the real API. You would also need to update the `axios.get` calls with any necessary headers or authentication required by the real API.
+While designed for an imaginary API, this script can be easily adapted for a real API with a similar structure. Simply replace the imaginary API URL with the real one and update the `axios.get` calls as needed, including any required headers or authentication.
 
 ## Installation
 
@@ -33,11 +33,9 @@ While this script was designed for an imaginary API, it can be easily adapted to
 ## Usage
 
 Run the script with the command: `node src/index.js`
-The command node src/index.js is used to run your JavaScript file index.js with Node.js. In this case, index.js is the entry point of your application, which imports and calls the scrapeProducts function from api.js.
+Note: This command will result in an ERROR because the script attempts to make a request to an imaginary API at https://api.ecommerce.com/products, which doesn’t exist. The ETIMEDOUT error indicates that the request to the server timed out without a response.
 
-This command will result in ERROR because the script is trying to make a request to an imaginary API at https://api.ecommerce.com/products, which doesn’t exist. The ETIMEDOUT error means that the request to the server timed out without a response.
-
-Check [Adapting the Solution to a Real API](##adapting-the-solution-to-a-Real-API) 
+Check the [Adapting the Solution to a Real API](##adapting-the-solution-to-a-Real-API) section for guidance on adapting the script to a real API.
 
 ## Testing
 
