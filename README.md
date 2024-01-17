@@ -11,13 +11,13 @@ The challenge is to extract all products from an imaginary e-commerce JSON API w
 
 ## Solution
 
-###Initial Request
+### Initial Request
 The script initiates the process by making an initial request to the API without any query parameters. This fetches the first 1000 products and provides the total number of available products.
 
-###Subsequent Requests
+### Subsequent Requests
 To overcome the API limitation, the script calculates price ranges based on the total number of products and a maximum price of $100,000. It then makes subsequent requests to the API with calculated `minPrice` and `maxPrice` parameters, ensuring all products are fetched.
 
-###Testing
+### Testing
 The script's functionality is tested using the Jest framework. The tests mock the API response and verify if the `scrapeProducts` function correctly retrieves all products and returns them in an array.
 
 ## Adapting the Solution to a Real API
