@@ -11,14 +11,21 @@ The challenge is to extract all products from an imaginary e-commerce JSON API w
 
 ## Solution
 
-### Initial Request
-The script initiates the process by making an initial request to the API without any query parameters. This fetches the first 1000 products and provides the total number of available products.
+The solution to this problem was to create an algorithm that overcomes the limitation of the API by creating requests for specific price ranges of products. This ensures that all products are scraped and accumulated into a single array called `products`.
 
-### Subsequent Requests
-To overcome the API limitation, the script calculates price ranges based on the total number of products and a maximum price of $100,000. It then makes subsequent requests to the API with calculated `minPrice` and `maxPrice` parameters, ensuring all products are fetched.
+Here's how the requests work:
 
-### Testing
-The script's functionality is tested using the Jest framework. The tests mock the API response and verify if the `scrapeProducts` function correctly retrieves all products and returns them in an array.
+1. **Initial Request:** The script first makes an initial request to the API without any query parameters. This returns the first 1000 products and the total number of products available. The total number of products is important because it helps us determine how many subsequent requests we need to make.
+
+2. **Calculating Price Ranges:** The script then calculates the price range for subsequent requests based on the total number of products and the maximum price of $100,000. The idea is to divide the entire price range ($0 to $100,000) into smaller ranges such that each range contains approximately 1000 products. This is done by dividing the maximum price by the ceiling of the total number of products divided by 1000.
+
+3. **Subsequent Requests:** The script then makes subsequent requests to the API with the `minPrice` and `maxPrice` query parameters set to these calculated price ranges. Each request will return products within a specific price range, and since each price range contains approximately 1000 products, we can retrieve all products with multiple requests.
+
+This approach effectively overcomes the limitation of the API by making multiple requests for specific price ranges. It ensures that all products are scraped and accumulated into a single array, regardless of the total number of products available on the API.
+
+## Testing
+
+The script is tested using the `jest` testing framework. The tests mock the API response and check if the `scrapeProducts` function correctly scrapes all products from the API and returns them in an array.
 
 ## Adapting the Solution to a Real API
 
@@ -33,6 +40,7 @@ While designed for an imaginary API, this script can be easily adapted for a rea
 ## Usage
 
 Run the script with the command: `node src/index.js`
+
 Note: This command will result in an ERROR because the script attempts to make a request to an imaginary API at https://api.ecommerce.com/products, which doesn’t exist. The ETIMEDOUT error indicates that the request to the server timed out without a response.
 
 Check the [Adapting the Solution to a Real API](##adapting-the-solution-to-a-Real-API) section for guidance on adapting the script to a real API.
